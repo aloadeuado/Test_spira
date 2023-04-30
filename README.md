@@ -4,7 +4,7 @@ La aplicaicon es una lista de recetas para seleccionar su favorita y el punto de
 
 ## CONTRUCCION MIDWARE
 
-- Para empezar creamos un ep [yape/api/registerOrAuth](http://100.26.132.234:5001/yape/api/registerOrAuth) donde de manera sencilla la misma pantalla de autenticacion no sirve para registrar el usuario
+- Para empezar creamos un ep [yape/api/registerOrAuth](http://44.215.48.103:5002/spira/api/registerOrAuth) donde de manera sencilla la misma pantalla de autenticacion no sirve para registrar el usuario
 
 request
 ```javascript
@@ -21,7 +21,7 @@ response
 
 nota: se considero generar un token para autenticacion por medio de Headers pero se descarto por se runa test app
 
-- Para el registro de favoritos el ep [/yape/api/addTextSearch](http://100.26.132.234:5001/yape/api/registerOrAuth) donde por medio del id del usuario asignaremos los favoritos los textos se guardaran siempre y cuando ovtengan resultados de la parte de recetas
+- Para el registro de favoritos el ep [/yape/api/addTextSearch](http://44.215.48.103:5002/spira/api/registerOrAuth) donde por medio del id del usuario asignaremos los favoritos los textos se guardaran siempre y cuando ovtengan resultados de la parte de recetas
 
 request
 ```javascript
