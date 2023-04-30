@@ -1,5 +1,5 @@
 //
-//  RecipesWS.swift
+//  ProductsWS.swift
 //  test_empowermentlabs
 //
 //  Created by iMac on 9/02/23.
@@ -18,8 +18,8 @@ struct Products {
         }
     }
     
-    static func getDetailProduct(idRecipe: Int, complete: @escaping ((Bool, ProductOfList?, String) -> Void) ) {
-        let url = getDetailProductUrl().replacingOccurrences(of: "&{idRecipe}", with: "\(idRecipe)")
+    static func getDetailProduct(idProduct: Int, complete: @escaping ((Bool, ProductOfList?, String) -> Void) ) {
+        let url = getDetailProductUrl().replacingOccurrences(of: "&{idProduct}", with: "\(idProduct)")
         
         ApiServices().requestHttpwithUrl(EpUrl: url, method: .get, withData: [:], modelType: ProductOfList.self) { success, detailProduct, error in
             DispatchQueue.main.async {

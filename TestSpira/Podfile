@@ -17,6 +17,7 @@ target 'TestSpira' do
   # For example, to use Firebase Authentication and Cloud Firestore
   pod 'FirebaseAuth', '~> 10.7.0'
   pod 'FirebaseFirestore', '~> 10.9.0'
+  pod 'Firebase/Messaging', '~> 10.7.0'
   # Pods for TestSpira
 
 end

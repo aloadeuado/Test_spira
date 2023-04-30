@@ -9,7 +9,7 @@ import Foundation
 
 class SearchWS {
     static func createTextSearch(text: String, email: String, complete: @escaping ((Bool, TextModel?, String) -> Void)) {
-        let url = getBASE_UREL() + "/yape/api/addTextSearch"
+        let url = getBASE_UREL() + "/spira/api/addTextSearch"
         let dic = ["text": text, "email": email]
         ApiServices().requestHttpwithUrl(EpUrl: url, method: .post, withData: dic, modelType: TextModel.self) { success, textModel, error in
             DispatchQueue.main.async {
@@ -19,7 +19,7 @@ class SearchWS {
     }
     
     static func getTextSearch(email: String, complete: @escaping ((Bool, TextModel?, String) -> Void)) {
-        let url = getBASE_UREL() + "/yape/api/getTextSearch"
+        let url = getBASE_UREL() + "/spira/api/getTextSearch"
         let dic = ["email": email]
         ApiServices().requestHttpwithUrl(EpUrl: url, method: .post, withData: dic, modelType: TextModel.self) { success, textModel, error in
             DispatchQueue.main.async {

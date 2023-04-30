@@ -1,5 +1,5 @@
 //
-//  ListRecipesViewModel.swift
+//  ListProductsViewModel.swift
 //  test_empowermentlabs
 //
 //  Created by iMac on 9/02/23.
@@ -41,7 +41,7 @@ extension ListProductsViewModel: ListProductsViewModelToView {
     
     func getLocationData() {
         
-        LocationsWS.getLocationRecipe() {[weak self] successs, locationData, error in
+        LocationsWS.getLocationProduct() {[weak self] successs, locationData, error in
             guard let self = self else {return}
             if let locationData = locationData {
                 self.listProductsViewToViewModel?.successGetListText(locationModel: locationData)
@@ -76,12 +76,12 @@ extension ListProductsViewModel: ListProductsViewModelToView {
         }
     }
     
-    func getListFavoriteREcipesIds() -> [ProductOfList] {
-        return FavoriteDefault.getFavoriteRecipe()
+    func getListFavoriteProductsIds() -> [ProductOfList] {
+        return FavoriteDefault.getFavoriteProduct()
     }
     
     func addAndRemoveFavoriteId(result: ProductOfList) {
-        FavoriteDefault.addFavoriteRecipe(result: result)
+        FavoriteDefault.addFavoriteProduct(result: result)
     }
     
     func getListPage(listProducts: [ProductOfList]) -> [String] {

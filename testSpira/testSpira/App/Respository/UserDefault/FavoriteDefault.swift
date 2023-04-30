@@ -7,7 +7,7 @@
 
 import Foundation
 class FavoriteDefault {
-    static func addFavoriteRecipe(result: ProductOfList) {
+    static func addFavoriteProduct(result: ProductOfList) {
         let defaults = UserDefaults.standard
         if var data = defaults.object(forKey: "kFavorite") as? Data {
             if var listIdsFavorites = try? JSONDecoder().decode([ProductOfList].self, from: data) {
@@ -35,7 +35,7 @@ class FavoriteDefault {
         }
     }
     
-    static func getFavoriteRecipe() -> [ProductOfList] {
+    static func getFavoriteProduct() -> [ProductOfList] {
         let defaults = UserDefaults.standard
         if var data = defaults.object(forKey: "kFavorite") as? Data {
             if var listIdsFavorites = try? JSONDecoder().decode([ProductOfList].self, from: data) {

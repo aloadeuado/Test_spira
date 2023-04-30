@@ -1,5 +1,5 @@
 //
-//  RecipeCollectionViewCell.swift
+//  ProductCollectionViewCell.swift
 //  test_empowermentlabs
 //
 //  Created by iMac on 10/02/23.
