@@ -1,5 +1,5 @@
 //
-//  DetailRecipesViewModel.swift
+//  DetailProductsViewModel.swift
 //  test_empowermentlabs
 //
 //  Created by iMac on 10/02/23.
@@ -14,7 +14,7 @@ class DetailPeoductsViewModel {
         self.detailProductsViewToViewModel = detailProductsViewToViewModel
     }
 }
-//MARK: -DetailRecipesViewModelToView
+//MARK: -DetailProductsViewModelToView
 extension DetailPeoductsViewModel: DetailProductsViewModelToView {
     func getDetailProducts(controller: UIViewController, idProduct: Int) {
         Products.getDetailProduct(idProduct: idProduct) { [weak self] success, detailProducts, error in

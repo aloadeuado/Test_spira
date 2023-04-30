@@ -1,5 +1,5 @@
 //
-//  ListRecipesViewController.swift
+//  ListProductsViewController.swift
 //  test_yape_ios
 //
 //  Created by iMac on 24/02/23.
@@ -73,7 +73,7 @@ class ListProdcutsViewController: UIViewController {
         }
     }
 }
-//MARK: -ListRecipesViewToViewModel
+//MARK: -ListProductsViewToViewModel
 extension ListProdcutsViewController: ListProductsViewToViewModel {
     func successGetListText(locationModel: LocationModel) {
         self.locationModel = locationModel
@@ -260,7 +260,7 @@ extension ListProdcutsViewController: DateSelectedViewDelegate {
         
     }
 }
-//MARK: -RecipeCollectionViewCellDelegate
+//MARK: -ProductCollectionViewCellDelegate
 extension ListProdcutsViewController: ProductCollectionViewCellDelegate {
     func onShowLocation(datum: Datum) {
         MapViewController.show(controller: self, datum: datum)

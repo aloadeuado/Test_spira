@@ -1,5 +1,5 @@
 //
-//  DetailRecipesViewController.swift
+//  DetailProductsViewController.swift
 //  test_empowermentlabs
 //
 //  Created by iMac on 10/02/23.
@@ -60,7 +60,7 @@ class DetailProductsViewController: UIViewController {
         descriptionLabel.hideSkeleton()
     }
 }
-//MARK: -DetailRecipesViewToViewModel
+//MARK: -DetailProductsViewToViewModel
 extension DetailProductsViewController: DetailProductsViewToViewModel {
     func succesGetDetailProduct(detailProduct: ProductOfList) {
         self.detailProducts = detailProduct

@@ -1,5 +1,5 @@
 //
-//  ListRecipesViewModel.swift
+//  ListProductsViewModel.swift
 //  test_empowermentlabs
 //
 //  Created by iMac on 9/02/23.
