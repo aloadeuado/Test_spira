@@ -8,14 +8,14 @@
 import UIKit
 import SDWebImage
 import SkeletonView
-protocol RecipeCollectionViewCellDelegate: AnyObject {
+protocol ProductCollectionViewCellDelegate: AnyObject {
     func onAddAndRemoveFavorite(result: ProductOfList)
     func onShowLocation(datum: Datum)
 }
-class RecipeCollectionViewCell: UICollectionViewCell {
+class ProductCollectionViewCell: UICollectionViewCell {
 
-    static let  identificador = "RecipeCollectionViewCell"
-    static func nib() -> UINib  {   return UINib(nibName: "RecipeCollectionViewCell", bundle: Bundle(for: RecipeCollectionViewCell.self))  }
+    static let  identificador = "ProductCollectionViewCell"
+    static func nib() -> UINib  {   return UINib(nibName: "ProductCollectionViewCell", bundle: Bundle(for: ProductCollectionViewCell.self))  }
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -25,7 +25,7 @@ class RecipeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var locationButton: UIButton!
     
-    var delegate: RecipeCollectionViewCellDelegate?
+    var delegate: ProductCollectionViewCellDelegate?
     var result: ProductOfList?
     var datum: Datum?
     var isFavorite: Bool = false {
