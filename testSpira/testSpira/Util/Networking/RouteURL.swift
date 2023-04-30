@@ -19,12 +19,12 @@ func getStringOfInfo(key:String) -> String{
      
 }
 
-func getListRecipesUrl() -> String {
-    return getStringOfInfo(key: "URL_LIST_RECIPES")
+func getListProducstUrl() -> String {
+    return getStringOfInfo(key: "URL_LIST_PRODUCTS")
 }
 
-func getDetailRecipesUrl() -> String {
-    return getStringOfInfo(key: "URL_DETAIL_RECIPES")
+func getDetailProductUrl() -> String {
+    return getStringOfInfo(key: "URL_DETAIL_PRODUCT")
 }
 
 func getGoogleKey() -> String {

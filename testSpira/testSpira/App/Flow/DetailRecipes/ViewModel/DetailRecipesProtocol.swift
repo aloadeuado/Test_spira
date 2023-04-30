@@ -8,10 +8,10 @@
 import Foundation
 import UIKit
 protocol DetailRecipesViewToViewModel {
-    func succesGetDetailRecipe(detailRecipes: DetailRecipes)
+    func succesGetDetailRecipe(detailRecipes: ProductOfList)
     func showError(error: String)
 }
 
 protocol DetailRecipesViewModelToView: AnyObject {
-    func getDetailRecipes(controller:UIViewController, idRecipes: Int)
+    func getDetailRecipes(controller:UIViewController, idProduct: Int)
 }

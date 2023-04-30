@@ -8,6 +8,15 @@ target 'TestSpira' do
   pod 'Toast-Swift', '~> 5.0.1'
   pod 'SDWebImage', '~> 5.13.2'
   pod 'SkeletonView', '~> 1.30.4'
+  pod 'FirebaseAnalytics', '~> 10.7.0'
+
+  # For Analytics without IDFA collection capability, use this pod instead
+  # pod ‘Firebase/AnalyticsWithoutAdIdSupport’
+
+  # Add the pods for any other Firebase products you want to use in your app
+  # For example, to use Firebase Authentication and Cloud Firestore
+  pod 'FirebaseAuth', '~> 10.7.0'
+  pod 'FirebaseFirestore', '~> 10.9.0'
   # Pods for TestSpira
 
 end

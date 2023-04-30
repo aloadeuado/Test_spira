@@ -16,8 +16,8 @@ class DetailRecipesViewModel {
 }
 //MARK: -DetailRecipesViewModelToView
 extension DetailRecipesViewModel: DetailRecipesViewModelToView {
-    func getDetailRecipes(controller: UIViewController, idRecipes: Int) {
-        Recipes.getDetailRecipes(idRecipe: idRecipes) { [weak self] success, detailRecipes, error in
+    func getDetailRecipes(controller: UIViewController, idProduct: Int) {
+        Products.getDetailProduct(idRecipe: idProduct) { [weak self] success, detailRecipes, error in
             guard let self = self else {return}
             if success {
                 guard let detailRecipes = detailRecipes else {return}

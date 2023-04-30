@@ -2,6 +2,23 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BASE_UREL</key>
+	<string>${BASE_UREL}</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.418557106535-tiegshva1vq4hg83u8196vppuabff6uq</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>1238647596927511</string>
+	<key>FacebookDisplayName</key>
+	<string>aloadecuado_retos</string>
+	<key>GIDClientID</key>
+	<string>418557106535-tiegshva1vq4hg83u8196vppuabff6uq.apps.googleusercontent.com</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -21,5 +38,11 @@
 			</array>
 		</dict>
 	</dict>
+	<key>URL_DETAIL_PRODUCT</key>
+	<string>$(URL_DETAIL_PRODUCT)</string>
+	<key>URL_LIST_PRODUCTS</key>
+	<string>$(URL_LIST_PRODUCTS)</string>
+	<key>google_key</key>
+	<string>${google_key}</string>
 </dict>
 </plist>

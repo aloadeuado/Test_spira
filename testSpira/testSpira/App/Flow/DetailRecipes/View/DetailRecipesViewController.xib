@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailRecipesViewController" customModule="test_empowermentlabs" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailRecipesViewController" customModule="TestSpira" customModuleProvider="target">
             <connections>
                 <outlet property="creditsLabel" destination="XxN-Nz-Ex3" id="x6f-tl-S1h"/>
                 <outlet property="descriptionLabel" destination="28g-jh-Nuh" id="xUU-dY-XC3"/>
