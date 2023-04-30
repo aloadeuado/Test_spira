@@ -7,10 +7,10 @@
 
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
-bundle_id = spira.com.TestSpira
-app_name = Test Spira dev
-google_key = 748759526509-s267jd95nqmkf1q3pr9o8tq6gv3ihre1.apps.googleusercontent.com
-BASE_UREL = http:/$()/localhost:5000
+bundle_id = spira.com.TestSpiraIos
+app_name = Test Spira
+google_key = 418557106535-tiegshva1vq4hg83u8196vppuabff6uq.apps.googleusercontent.com
+BASE_UREL = http:/$()/44.215.48.103:5002
 API_KEY = cf258ecd5d9e4f019d9de2ffe169ebb3
-URL_LIST_RECIPES = https:/$()/api.spoonacular.com/recipes/search?apiKey=cf258ecd5d9e4f019d9de2ffe169ebb3&query=&{text}&offset=&{offset}&number=&{number}
-URL_DETAIL_RECIPES = https:/$()/api.spoonacular.com/recipes/&{idRecipe}/information?apiKey=cf258ecd5d9e4f019d9de2ffe169ebb3&includeNutrition=true.
+URL_LIST_PRODUCTS = https:/$()/fakestoreapi.com/products?limit=&{number}
+URL_DETAIL_PRODUCT = https:/$()/fakestoreapi.com/products/&{idProduct}

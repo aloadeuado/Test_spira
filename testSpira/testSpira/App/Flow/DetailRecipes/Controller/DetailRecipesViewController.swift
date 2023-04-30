@@ -11,15 +11,14 @@ import SkeletonView
 class DetailRecipesViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var ingredientsTableView: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var intrucctionsLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var creditsLabel: UILabel!
     @IBOutlet weak var heigthIngredientsTableView: NSLayoutConstraint!
     
-    var detailRecipes: DetailRecipes?
-    var result: Result?
+    var detailRecipes: ProductOfList?
+    var result: ProductOfList?
     var viewModel: DetailRecipesViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,17 +27,16 @@ class DetailRecipesViewController: UIViewController {
     }
 
     func initComponent() {
-        ingredientsTableView.register(IngredientsTableViewCell.nib(), forCellReuseIdentifier: IngredientsTableViewCell.identificador)
         viewModel = DetailRecipesViewModel(detailRecipesViewToViewModel: self)
         showSkeletor()
-        viewModel?.getDetailRecipes(controller: self, idRecipes: result?.id ?? 0)
+        viewModel?.getDetailRecipes(controller: self, idProduct: result?.id ?? 0)
     }
     
     @IBAction func closePressed(button: UIButton) {
         self.dismiss(animated: true)
     }
     
-    static func show(controller: UIViewController, result: Result) {
+    static func show(controller: UIViewController, result: ProductOfList) {
         let detailRecipesViewController = DetailRecipesViewController(nibName: "DetailRecipesViewController", bundle: nil)
         detailRecipesViewController.result = result
         detailRecipesViewController.modalPresentationStyle = .overFullScreen
@@ -75,7 +73,7 @@ class DetailRecipesViewController: UIViewController {
 }
 //MARK: -DetailRecipesViewToViewModel
 extension DetailRecipesViewController: DetailRecipesViewToViewModel {
-    func succesGetDetailRecipe(detailRecipes: DetailRecipes) {
+    func succesGetDetailRecipe(detailRecipes: ProductOfList) {
         self.detailRecipes = detailRecipes
         showHide()
         guard let detailRecipes = self.detailRecipes else {
@@ -83,36 +81,13 @@ extension DetailRecipesViewController: DetailRecipesViewToViewModel {
         }
         imageView.sd_setImage(with: NSURL(string: detailRecipes.image ?? "") as URL?)
         titleLabel.text = detailRecipes.title ?? ""
-        intrucctionsLabel.attributedText = (detailRecipes.instructions ?? "").htmlToAttributedString
-        descriptionLabel.attributedText = (detailRecipes.summary ?? "").htmlToAttributedString
-        creditsLabel.text = detailRecipes.creditsText ?? ""
         
-        heigthIngredientsTableView.constant = CGFloat((detailRecipes.extendedIngredients?.count ?? 0) * 57)
-        ingredientsTableView.reloadData()
+        creditsLabel.text = detailRecipes.description
     }
     
     func showError(error: String) {
         
     }
     
-    
-}
-//MARK: -UITableViewDataSource
-extension DetailRecipesViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return detailRecipes?.extendedIngredients?.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: IngredientsTableViewCell.identificador, for: indexPath) as? IngredientsTableViewCell {
-            if let detailRecipes = self.detailRecipes, let extendedIngredient = detailRecipes.extendedIngredients {
-                cell.setData(extendedIngredient: extendedIngredient[indexPath.row])
-            }
-            
-            return cell
-        }
-        return UITableViewCell()
-    }
     
 }

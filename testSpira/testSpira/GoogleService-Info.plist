@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>418557106535-tiegshva1vq4hg83u8196vppuabff6uq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.418557106535-tiegshva1vq4hg83u8196vppuabff6uq</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBZZQHnLUIMcu9ecTZPRj9tLPWxQvmd5QY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>418557106535</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>spira.com.TestSpiraIos</string>
+	<key>PROJECT_ID</key>
+	<string>testpira-eec30</string>
+	<key>STORAGE_BUCKET</key>
+	<string>testpira-eec30.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:418557106535:ios:ad82be1019cff92bcfb7c2</string>
+</dict>
+</plist>
