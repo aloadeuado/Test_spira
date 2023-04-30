@@ -24,6 +24,7 @@ class ListRecipesViewController: UIViewController {
     var textSeacrh = ""
     var isLoading = true
     var userData: UserData?
+    var maxCount = 5
     var locationModel: LocationModel?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,14 +37,14 @@ class ListRecipesViewController: UIViewController {
         viewModel = ListProductsViewModel(listProductsViewToViewModel: self)
         isLoading = true
         recipesCollectionView.reloadData()
-        viewModel?.getListProducts(controller: self, numberPerPage: 10)
+        viewModel?.getListProducts(controller: self, text: "", numberPerPage: maxCount)
         viewModel?.getTextFastSearch()
         viewModel?.getLocationData()
         searchBarView.delegate = self
         dateSelectedView.delegate = self
         namePageDateSelectedView.delegate = self
         dateSelectedView.loadViews()
-        recipesCollectionView.register(RecipeCollectionViewCell.nib(), forCellWithReuseIdentifier: RecipeCollectionViewCell.identificador)
+        recipesCollectionView.register(ProductCollectionViewCell.nib(), forCellWithReuseIdentifier: ProductCollectionViewCell.identificador)
         listFavoritesRecipes = viewModel?.getListFavoriteREcipesIds() ?? []
     }
     
@@ -89,8 +90,9 @@ extension ListRecipesViewController: ListProductsViewToViewModel {
         self.recipesCollectionView.reloadData()
     }
     
-    func succesGetListProducts(listProducts: [ProductOfList]) {
+    func succesGetListProducts(listProducts: [ProductOfList], text: String) {
         self.listProducts = listProducts
+        self.textSeacrh = text
         isLoading = false
         if (((self.listProducts ?? []).isEmpty)) {
             namePageDateSelectedView.isHidden = true
@@ -118,13 +120,13 @@ extension ListRecipesViewController: SearchBarViewDelegate {
     func onGetText(text: String) {
         isLoading = true
         self.recipesCollectionView.reloadData()
-        viewModel?.getListProducts(controller: self, numberPerPage: 10)
+        viewModel?.getListProducts(controller: self, text: text, numberPerPage: maxCount)
     }
     
     func onClearText() {
         isLoading = true
         self.recipesCollectionView.reloadData()
-        viewModel?.getListProducts(controller: self, numberPerPage: 10)
+        viewModel?.getListProducts(controller: self, text: "", numberPerPage: maxCount)
     }
 
 }
@@ -147,13 +149,13 @@ extension ListRecipesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if isLoading {
-            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecipeCollectionViewCell.identificador, for: indexPath) as? RecipeCollectionViewCell {
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identificador, for: indexPath) as? ProductCollectionViewCell {
                 cell.showSkeletor()
                 return cell
             }
         }
         if isFavoriteRecipes {
-            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecipeCollectionViewCell.identificador, for: indexPath) as? RecipeCollectionViewCell {
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identificador, for: indexPath) as? ProductCollectionViewCell {
                 cell.hidSkeletor()
                 if let listProducts = listProducts {
                     cell.setData(result: listFavoritesRecipes[indexPath.row])
@@ -171,7 +173,7 @@ extension ListRecipesViewController: UICollectionViewDataSource {
                 return cell
             }
         }
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecipeCollectionViewCell.identificador, for: indexPath) as? RecipeCollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identificador, for: indexPath) as? ProductCollectionViewCell {
             cell.hidSkeletor()
             if let result = listProducts {
                 cell.setData(result: result[indexPath.row])
@@ -222,18 +224,35 @@ extension ListRecipesViewController: DateSelectedViewDelegate {
     func dateSelectedView(dateSelectedView: DateSelectedView, didSelectIndex index: Int, text: String) {
         if dateSelectedView == namePageDateSelectedView {
             selectIndexDefaultNumberPage = index
+            switch index {
+            case 0:
+                maxCount = 5
+                break
+            case 1:
+                maxCount = 10
+                break
+            case 2:
+                maxCount = 15
+                break
+            case 3:
+                maxCount = 150
+                break
+            default:
+                maxCount = 5
+            }
             isLoading = true
             self.recipesCollectionView.reloadData()
-            viewModel?.getListProducts(controller: self, numberPerPage: 10)
+            viewModel?.getListProducts(controller: self, text: self.textSeacrh, numberPerPage: maxCount)
             
             return
         }
         self.selectIndexDefault = index
         selectIndexDefaultNumberPage = 0
+        
         self.textSeacrh = text
         isLoading = true
         self.recipesCollectionView.reloadData()
-        viewModel?.getListProducts(controller: self, numberPerPage: 10)
+        viewModel?.getListProducts(controller: self, text: self.textSeacrh, numberPerPage: maxCount)
         
     }
     
@@ -242,7 +261,7 @@ extension ListRecipesViewController: DateSelectedViewDelegate {
     }
 }
 //MARK: -RecipeCollectionViewCellDelegate
-extension ListRecipesViewController: RecipeCollectionViewCellDelegate {
+extension ListRecipesViewController: ProductCollectionViewCellDelegate {
     func onShowLocation(datum: Datum) {
         MapViewController.show(controller: self, datum: datum)
     }
