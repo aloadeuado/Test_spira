@@ -8,22 +8,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--List Recipes View Controller-->
+        <!--List Prodcuts View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ListRecipesViewController" customModule="test_yape_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ListProdcutsViewController" customModule="TestSpira" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1cZ-Hc-n1l" customClass="SearchBarView" customModule="test_yape_ios" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1cZ-Hc-n1l" customClass="SearchBarView" customModule="TestSpira" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="59" width="393" height="66"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="56h-yC-0bg"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TM2-a6-AdI" customClass="DateSelectedView" customModule="test_yape_ios" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TM2-a6-AdI" customClass="DateSelectedView" customModule="TestSpira" customModuleProvider="target">
                                 <rect key="frame" x="16" y="130" width="361" height="56"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -83,7 +83,7 @@
                                     <constraint firstAttribute="trailing" secondItem="rMR-3O-52X" secondAttribute="trailing" constant="20" id="ynW-OI-pAJ"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ylv-4m-QEX" customClass="DateSelectedView" customModule="test_yape_ios" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ylv-4m-QEX" customClass="DateSelectedView" customModule="TestSpira" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="762" width="393" height="56"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -121,7 +121,7 @@
                         <outlet property="dateSelectedView" destination="TM2-a6-AdI" id="4YR-Sr-D1F"/>
                         <outlet property="emptyState" destination="vgy-eh-hKh" id="9VG-ri-XHN"/>
                         <outlet property="namePageDateSelectedView" destination="Ylv-4m-QEX" id="f9L-wD-I8o"/>
-                        <outlet property="recipesCollectionView" destination="dsT-0s-tk9" id="32h-QV-I2f"/>
+                        <outlet property="productsCollectionView" destination="dsT-0s-tk9" id="arm-LN-WHw"/>
                         <outlet property="searchBarView" destination="1cZ-Hc-n1l" id="xD9-FO-SsU"/>
                     </connections>
                 </viewController>

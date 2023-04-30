@@ -7,8 +7,8 @@
 
 import Foundation
 class LocationsWS {
-    static func getLocationRecipe(complete: @escaping ((Bool, LocationModel?, String) -> Void)) {
-        let url = getBASE_UREL() + "/yape/api/getLocationsRecipes"
+    static func getLocationProduct(complete: @escaping ((Bool, LocationModel?, String) -> Void)) {
+        let url = getBASE_UREL() + "/spira/api/getLocationsRecipes"
         ApiServices().requestHttpwithUrl(EpUrl: url, method: .get, withData: ["":""], modelType: LocationModel.self) { success, locationModel, error in
             DispatchQueue.main.async {
                 complete(success, locationModel, error?.localizedDescription ?? "")

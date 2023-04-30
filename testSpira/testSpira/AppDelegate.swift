@@ -7,14 +7,17 @@
 
 import UIKit
 import FirebaseCore
+import UserNotifications
+import FirebaseMessaging
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        Messaging.messaging().delegate = self
         return true
     }
 
@@ -33,5 +36,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    // For alert notifications, call the API inside the service extension:
+    class NotificationService: UNNotificationServiceExtension {
+      override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
+          Messaging.serviceExtension()
+          .exportDeliveryMetricsToBigQuery(withMessageInfo:request.content.userInfo)
+      }
+    }
+    
+    // For background notifications, call the API inside the UIApplicationDelegate or NSApplicationDelegate method:
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        Messaging.serviceExtension().exportDeliveryMetricsToBigQuery(withMessageInfo:userInfo)
+    }
 }
 

@@ -49,9 +49,9 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        /*if let listRecipesViewController = segue.destination as? ListRecipesViewController {
-            listRecipesViewController.userData = userData
-        }*/
+        if let listProdcutsViewController = segue.destination as? ListProdcutsViewController {
+            listProdcutsViewController.userData = userData
+        }
     }
 }
 //MARK: -AuthViewModelDelegate
