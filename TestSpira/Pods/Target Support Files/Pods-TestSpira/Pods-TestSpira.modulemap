@@ -1,0 +1,6 @@
+framework module Pods_TestSpira {
+  umbrella header "Pods-TestSpira-umbrella.h"
+
+  export *
+  module * { export * }
+}
