@@ -107,7 +107,7 @@ Nota: cabe aclarar que mucha de la logica de negocio no se hizo en el back como 
 ## Manejo de git (git flow)
 - en principio se p[enso en hacer una rama de despliegue para dev, qa, prd pero vieno la agilidad de prueba solo se dejo develop para dev y main para prd y qa con el que se levanta ramas feature por cada avance 
 la parte de hotfix y integracion queda en la capa de revision pero al final si se hace la liberacion desde develop a prd(main)
-![firebasestorage](https://firebasestorage.googleapis.com/v0/b/testyape-8efbd.appspot.com/o/Captura%20de%20Pantalla%202023-02-25%20a%20la(s)%2012.39.47%20a.m..png?alt=media&token=0b056351-ce4b-4969-bd3b-a97f5faf62e6)
+![firebasestorage](https://firebasestorage.googleapis.com/v0/b/testpira-eec30.appspot.com/o/Captura%20de%20pantalla%202023-04-30%20a%20la(s)%206.38.54%20p.m..png?alt=media&token=07ac6bed-7a04-4447-bc7e-a374b2c07f55)
 
 ## Installation
 
@@ -123,20 +123,21 @@ pod install
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'test_empowermentlabs' do
+target 'test_yape_ios' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  
+  pod 'GoogleSignIn', '~> 6.2.4'
+  pod 'Toast-Swift', '~> 5.0.1'
   pod 'SDWebImage', '~> 5.13.2'
   pod 'SkeletonView', '~> 1.30.4'
-  # Pods for test_empowermentlabs
 
-  target 'test_empowermentlabsTests' do
+  target 'test_yape_iosTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'test_empowermentlabsUITests' do
+  target 'test_yape_iosUITests' do
     # Pods for testing
   end
 
@@ -146,8 +147,8 @@ end
 - SDWebImage: descargar imagenes y menejo de cache para su reconsumo posteriormente.
 - SkeletonView: para la evidencia de fragmento de desgradado mientras trae los datos o responde en EndPoint seleccionado.
 
-- nota: al terminar de agregar los pods selecciona del los schemas el de test_yape_ios_qa o test_yape_ios_prd como en la imagen
-![firebasestorage](https://firebasestorage.googleapis.com/v0/b/testyape-8efbd.appspot.com/o/Captura%20de%20Pantalla%202023-02-24%20a%20la(s)%2010.45.33%20p.m..png?alt=media&token=586971c6-76a5-437b-aa5e-446d5f45a1ec)
+- nota: al terminar de agregar los pods selecciona del los schemas el de testSpira_dev o testSpira como en la imagen
+![firebasestorage](https://firebasestorage.googleapis.com/v0/b/testpira-eec30.appspot.com/o/Captura%20de%20pantalla%202023-04-30%20a%20la(s)%206.42.20%20p.m..png?alt=media&token=ef15a2e4-0c38-40b4-8d51-dafabc295a2c)
 
 ## Arquitectura usada
 - mvvm: la idea es la implementación de [POP](https://medium.com/globallogic-latinoamerica-mobile/la-programaci%C3%B3n-orientada-a-protocolos-en-swift-3548ed2dc2f1) conjunto con un viewModel con los protocolos
@@ -155,53 +156,101 @@ end
 import Foundation
 import UIKit
 
-protocol ListRecipesViewToViewModel {
-    func succesGetListRecipes(listRecipes: ListRecipes, text: String)
+protocol ListProductsViewToViewModel {
+    func succesGetListProducts(listProducts: [ProductOfList], text: String)
+    func successGetListText(textModel: TextModel)
+    func successGetListText(locationModel: LocationModel)
     func showError(error: String)
 }
 
-protocol ListRecipesViewModelToView: AnyObject {
-    func getListRecipes(controller:UIViewController, text: String, offsetPage: Int, numberPerPage: Int)
+protocol ListProductsViewModelToView: AnyObject {
+    func getListProducts(controller: UIViewController, text: String, numberPerPage: Int)
     func addTextFastSearch(text: String)
+    func getLocationData()
 }
+
 ```
 - y por medio de binding se entregar los resuelto en los servicios para las vistas
 
 ```swift
-//MARK: -ListRecipesViewToViewModel
-extension ViewController: ListRecipesViewToViewModel {
-    func succesGetListRecipes(listRecipes: ListRecipes, text: String) {
-        self.listRecipes = listRecipes
-        self.textSeacrh = text
-        isLoading = false
-        if (((self.listRecipes?.results ?? []).isEmpty)) {
-            namePageDateSelectedView.isHidden = true
-            emptyState.isHidden = false
-            return
-        }
-        emptyState.isHidden = true
-        namePageDateSelectedView.isHidden = false
-        if !(self.listRecipes?.results?.isEmpty ?? false) {
-            viewModel?.addTextFastSearch(text: text)
-            dateSelectedView.textList = viewModel?.getTextFastSearch() ?? []
-            let index = dateSelectedView.textList.firstIndex { text1 in
-                return text1 == text
+///MARK: -ListProductsViewModelToView
+extension ListProductsViewModel: ListProductsViewModelToView {
+    func getListProducts(controller: UIViewController, text: String, numberPerPage: Int) {
+        
+        Products.getListProducts(numberOfItems: numberPerPage) { [weak self] success, listProducts, error in
+            if success {
+                guard let self = self, let listProducts = listProducts else {return}
+                if text.isEmpty {
+                    self.listProductsViewToViewModel?.succesGetListProducts(listProducts: listProducts, text: text)
+                    return
+                }
+                var listProductFilter = [ProductOfList]()
+                listProductFilter = listProducts.filter({ productOfList in
+                    print("\(productOfList.title ?? "") text: \(text) cumple: \((productOfList.title ?? "").contains(text.lowercased()))")
+                    return (productOfList.title?.lowercased() ?? "").contains(text.lowercased())
+                })
+                
+                self.listProductsViewToViewModel?.succesGetListProducts(listProducts: listProductFilter, text: text)
+                return
+                
+            } else {
+                controller.view.makeToast(error)
             }
-            dateSelectedView.indexDefault = index ?? -1
-            dateSelectedView.loadViews()
-            
         }
-        guard let listRecipes = self.listRecipes else {return}
-        namePageDateSelectedView.textList = viewModel?.getListPage(listRecipes: listRecipes) ?? []
-        namePageDateSelectedView.indexDefault = selectIndexDefaultNumberPage
-        namePageDateSelectedView.loadViews()
-        self.recipesCollectionView.reloadData()
     }
     
-    func showError(error: String) {
-        AlertsNative.showSimpleAlertNoAction(titleText: "Error", subTitleText: error)
+    func getLocationData() {
+        
+        LocationsWS.getLocationProduct() {[weak self] successs, locationData, error in
+            guard let self = self else {return}
+            if let locationData = locationData {
+                self.listProductsViewToViewModel?.successGetListText(locationModel: locationData)
+            }
+        }
+
+    }
+    
+    func addTextFastSearch(text: String) {
+        SearchWS.createTextSearch(text: text, email: UserDefault.getDefaultUser()?.data?.email ?? "") { [weak self] success, textModel, error in
+            guard let self = self else {return}
+            if let textModel1 = textModel, let error = textModel1.error {
+                self.listProductsViewToViewModel?.showError(error: error)
+            } else if let textModel1 = textModel {
+                self.listProductsViewToViewModel?.successGetListText(textModel: textModel1)
+            } else {
+                self.listProductsViewToViewModel?.showError(error: "Ha ocurrido un error")
+            }
+        }
+    }
+    
+    func getTextFastSearch(){
+        SearchWS.getTextSearch(email: UserDefault.getDefaultUser()?.data?.email ?? "") { [weak self] success, textModel, error in
+            guard let self = self else {return}
+            if let textModel1 = textModel, let error = textModel1.error {
+                self.listProductsViewToViewModel?.showError(error: error)
+            } else if let textModel1 = textModel {
+                self.listProductsViewToViewModel?.successGetListText(textModel: textModel1)
+            } else {
+                self.listProductsViewToViewModel?.showError(error: "Ha ocurrido un error")
+            }
+        }
+    }
+    
+    func getListFavoriteProductsIds() -> [ProductOfList] {
+        return FavoriteDefault.getFavoriteProduct()
+    }
+    
+    func addAndRemoveFavoriteId(result: ProductOfList) {
+        FavoriteDefault.addFavoriteProduct(result: result)
+    }
+    
+    func getListPage(listProducts: [ProductOfList]) -> [String] {
+        
+        
+        return ["0...5", "0...10", "0...15", "all"]
     }
 }
+
 ```
 - se agrego una arquitectura repository para el manejo de storage
 - una clase de trato de data dependiendo de la necesidad del negocio
@@ -282,23 +331,23 @@ class ApiServices {
 ```swift
 import Foundation
 
-struct Recipes {
-    static func getListRecipes(text:String, offsetOnPage: Int, numberOfItems: Int, complete: @escaping ((Bool, ListRecipes?, String) -> Void)) {
-        let url = getListRecipesUrl().replacingOccurrences(of: "&{text}", with: "\(text)").replacingOccurrences(of: "&{offset}", with: "\(offsetOnPage)").replacingOccurrences(of: "&{number}", with: "\(numberOfItems)")
+struct Products {
+    static func getListProducts(numberOfItems: Int, complete: @escaping ((Bool, [ProductOfList]?, String) -> Void)) {
+        let url = getListProducstUrl().replacingOccurrences(of: "&{number}", with: "\(numberOfItems)")
         
-        ApiServices().requestHttpwithUrl(EpUrl: url, method: .get, withData: [:], modelType: ListRecipes.self) { success, listRecipes, error in
+        ApiServices().requestHttpwithUrl(EpUrl: url, method: .get, withData: [:], modelType: [ProductOfList].self) { success, listProduct, error in
             DispatchQueue.main.async {
-                complete(success, listRecipes, error?.localizedDescription ?? "")
+                complete(success, listProduct, error?.localizedDescription ?? "")
             }
         }
     }
     
-    static func getDetailRecipes(idRecipe: Int, complete: @escaping ((Bool, DetailRecipes?, String) -> Void) ) {
-        let url = getDetailRecipesUrl().replacingOccurrences(of: "&{idRecipe}", with: "\(idRecipe)")
+    static func getDetailProduct(idProduct: Int, complete: @escaping ((Bool, ProductOfList?, String) -> Void) ) {
+        let url = getDetailProductUrl().replacingOccurrences(of: "&{idProduct}", with: "\(idProduct)")
         
-        ApiServices().requestHttpwithUrl(EpUrl: url, method: .get, withData: [:], modelType: DetailRecipes.self) { success, detailRecipes, error in
+        ApiServices().requestHttpwithUrl(EpUrl: url, method: .get, withData: [:], modelType: ProductOfList.self) { success, detailProduct, error in
             DispatchQueue.main.async {
-                complete(success, detailRecipes, error?.localizedDescription ?? "")
+                complete(success, detailProduct, error?.localizedDescription ?? "")
             }
         }
     }
@@ -309,58 +358,90 @@ struct Recipes {
 ```swift
 import Foundation
 import UIKit
-class ListRecipesViewModel {
-    var listRecipesViewToViewModel: ListRecipesViewToViewModel?
-    init(listRecipesViewToViewModel: ListRecipesViewToViewModel) {
-        self.listRecipesViewToViewModel = listRecipesViewToViewModel
+class ListProductsViewModel {
+    var listProductsViewToViewModel: ListProductsViewToViewModel?
+    init(listProductsViewToViewModel: ListProductsViewToViewModel) {
+        self.listProductsViewToViewModel = listProductsViewToViewModel
     }
 }
-//MARK: -ListRecipesViewModelToView
-extension ListRecipesViewModel: ListRecipesViewModelToView {
-    func getListRecipes(controller: UIViewController, text: String, offsetPage: Int, numberPerPage: Int) {
-        Recipes.getListRecipes(text: text, offsetOnPage: offsetPage, numberOfItems: numberPerPage) {[weak self] success, listRecipes, error in
+//MARK: -ListProductsViewModelToView
+extension ListProductsViewModel: ListProductsViewModelToView {
+    func getListProducts(controller: UIViewController, text: String, numberPerPage: Int) {
+        
+        Products.getListProducts(numberOfItems: numberPerPage) { [weak self] success, listProducts, error in
             if success {
-                guard let self = self, let listRecipes = listRecipes else {return}
-                self.listRecipesViewToViewModel?.succesGetListRecipes(listRecipes: listRecipes, text: text)
+                guard let self = self, let listProducts = listProducts else {return}
+                if text.isEmpty {
+                    self.listProductsViewToViewModel?.succesGetListProducts(listProducts: listProducts, text: text)
+                    return
+                }
+                var listProductFilter = [ProductOfList]()
+                listProductFilter = listProducts.filter({ productOfList in
+                    print("\(productOfList.title ?? "") text: \(text) cumple: \((productOfList.title ?? "").contains(text.lowercased()))")
+                    return (productOfList.title?.lowercased() ?? "").contains(text.lowercased())
+                })
+                
+                self.listProductsViewToViewModel?.succesGetListProducts(listProducts: listProductFilter, text: text)
+                return
+                
             } else {
-                AlertsNative.showSimpleAlertNoAction(titleText: "Error", subTitleText: error)
+                controller.view.makeToast(error)
             }
         }
     }
     
-    func addTextFastSearch(text: String) {
-        addTextFastSearchUtil(text: text)
-    }
-    
-    func getTextFastSearch() -> [String] {
-        return getTextFastSearchUtil()
-    }
-    
-    func getListFavoriteREcipesIds() -> [Result] {
-        return FavoriteDefault.getFavoriteRecipe()
-    }
-    
-    func addAndRemoveFavoriteId(result: Result) {
-        FavoriteDefault.addFavoriteRecipe(result: result)
-    }
-    
-    func getListPage(listRecipes: ListRecipes) -> [String] {
-        var listText = [String]()
-        let listData:Int = (listRecipes.totalResults ?? 0) / 10
-
-        var index1 = 0
-        for _ in 0...listData {
-            
-            index1 += 10
-            listText.append("\(index1 - 9)...\(index1)")
-        }
-        if ((listRecipes.totalResults ?? 0) % 10) > 0 {
-            listText.append("\(index1 - 9)...\((listRecipes.totalResults ?? 0))")
-        }
+    func getLocationData() {
         
-        return listText
+        LocationsWS.getLocationProduct() {[weak self] successs, locationData, error in
+            guard let self = self else {return}
+            if let locationData = locationData {
+                self.listProductsViewToViewModel?.successGetListText(locationModel: locationData)
+            }
+        }
+
+    }
+    
+    func addTextFastSearch(text: String) {
+        SearchWS.createTextSearch(text: text, email: UserDefault.getDefaultUser()?.data?.email ?? "") { [weak self] success, textModel, error in
+            guard let self = self else {return}
+            if let textModel1 = textModel, let error = textModel1.error {
+                self.listProductsViewToViewModel?.showError(error: error)
+            } else if let textModel1 = textModel {
+                self.listProductsViewToViewModel?.successGetListText(textModel: textModel1)
+            } else {
+                self.listProductsViewToViewModel?.showError(error: "Ha ocurrido un error")
+            }
+        }
+    }
+    
+    func getTextFastSearch(){
+        SearchWS.getTextSearch(email: UserDefault.getDefaultUser()?.data?.email ?? "") { [weak self] success, textModel, error in
+            guard let self = self else {return}
+            if let textModel1 = textModel, let error = textModel1.error {
+                self.listProductsViewToViewModel?.showError(error: error)
+            } else if let textModel1 = textModel {
+                self.listProductsViewToViewModel?.successGetListText(textModel: textModel1)
+            } else {
+                self.listProductsViewToViewModel?.showError(error: "Ha ocurrido un error")
+            }
+        }
+    }
+    
+    func getListFavoriteProductsIds() -> [ProductOfList] {
+        return FavoriteDefault.getFavoriteProduct()
+    }
+    
+    func addAndRemoveFavoriteId(result: ProductOfList) {
+        FavoriteDefault.addFavoriteProduct(result: result)
+    }
+    
+    func getListPage(listProducts: [ProductOfList]) -> [String] {
+        
+        
+        return ["0...5", "0...10", "0...15", "all"]
     }
 }
+
 
 ```
 ## Manejo de Generics
@@ -473,18 +554,18 @@ func requestHttpwithUrl<T : Codable>(EpUrl: String, method: ApiServices.Method, 
 
 - y cada vez que hagamos un pull request a nuestra rama qa tendremos automáticamente un build con las características de workflow ya construidas
 
-![firebasestorage](https://firebasestorage.googleapis.com/v0/b/pruebacyxtera-4bc18.appspot.com/o/WhatsApp%20Image%202023-02-10%20at%203.45.49%20PM.jpeg?alt=media&token=a0e76c1d-fd1a-42cc-b45c-b2754cdd047f)
+
+## Usuario y contraseña de prueba
+
+- user: test@mail.com
+- password: 12345678
 
 
+## Video demostrativo Lista Productos
 
-## Video demostrativo Lista Recetas
+[![IMAGE ALT TEXT HERE](https://firebasestorage.googleapis.com/v0/b/testpira-eec30.appspot.com/o/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20Max%20-%202023-04-30%20at%2018.48.54.png?alt=media&token=7779974b-fea8-4926-96bd-f3334857109c)](https://firebasestorage.googleapis.com/v0/b/testpira-eec30.appspot.com/o/Simulator%20Screen%20Recording%20-%20iPhone%2011%20Pro%20Max%20-%202023-04-30%20at%2018.49.52.mp4?alt=media&token=4d576a80-e2e9-4d08-90da-cfab9cd59bf6)
 
-[![IMAGE ALT TEXT HERE](https://firebasestorage.googleapis.com/v0/b/pruebacyxtera-4bc18.appspot.com/o/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20Max%20-%202023-02-10%20at%2016.12.14.png?alt=media&token=b6185015-0789-41ff-8a75-13e2c55ca49a)](https://youtu.be/MqNg5m9Alhg)
+## Video demostrativo Detalle Productos
 
-## Video demostrativo Detalle Recetas
-
-[![IMAGE ALT TEXT HERE](https://firebasestorage.googleapis.com/v0/b/pruebacyxtera-4bc18.appspot.com/o/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20Max%20-%202023-02-10%20at%2016.12.14.png?alt=media&token=b6185015-0789-41ff-8a75-13e2c55ca49a)](https://youtube.com/shorts/MleNZDTURvY)
-## Video demostrativo Mapa Recetas
-
-[![IMAGE ALT TEXT HERE](https://firebasestorage.googleapis.com/v0/b/testyape-8efbd.appspot.com/o/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20Max%20-%202023-02-25%20at%2000.28.58.png?alt=media&token=158b9960-e69d-4d8e-af38-8f3cf25f625c)](https://firebasestorage.googleapis.com/v0/b/testyape-8efbd.appspot.com/o/Simulator%20Screen%20Recording%20-%20iPhone%2011%20Pro%20Max%20-%202023-02-25%20at%2000.22.17.mp4?alt=media&token=4ade3949-0ec2-46ef-aba6-31ea71fdc7ad)
+[![IMAGE ALT TEXT HERE](https://firebasestorage.googleapis.com/v0/b/testpira-eec30.appspot.com/o/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20Max%20-%202023-04-30%20at%2018.49.01.png?alt=media&token=837f5ef2-b752-4cc9-8ef8-15fcdfcad4c1)](https://firebasestorage.googleapis.com/v0/b/testpira-eec30.appspot.com/o/Simulator%20Screen%20Recording%20-%20iPhone%2011%20Pro%20Max%20-%202023-04-30%20at%2018.50.10.mp4?alt=media&token=ca532236-b43e-4677-bc13-7e911f2f742b)
 
