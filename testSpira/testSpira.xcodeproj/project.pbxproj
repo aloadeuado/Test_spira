@@ -44,14 +44,14 @@
 		95C41D2E29FEBD55009E0E31 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C41D2C29FEBD55009E0E31 /* AuthViewModel.swift */; };
 		95C41D3629FEBF59009E0E31 /* ListRecipesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C41D3429FEBF59009E0E31 /* ListRecipesProtocols.swift */; };
 		95C41D3729FEBF59009E0E31 /* ListProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C41D3529FEBF59009E0E31 /* ListProductsViewModel.swift */; };
-		95C41D3929FEBF62009E0E31 /* ListRecipes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95C41D3829FEBF62009E0E31 /* ListRecipes.storyboard */; };
-		95C41D3C29FEBF6C009E0E31 /* RecipeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C41D3A29FEBF6C009E0E31 /* RecipeCollectionViewCell.xib */; };
-		95C41D3D29FEBF6C009E0E31 /* RecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C41D3B29FEBF6C009E0E31 /* RecipeCollectionViewCell.swift */; };
-		95C41D3F29FEBF80009E0E31 /* ListRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C41D3E29FEBF80009E0E31 /* ListRecipesViewController.swift */; };
-		95C41D4829FEBFE1009E0E31 /* DetailRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C41D4729FEBFE1009E0E31 /* DetailRecipesViewController.swift */; };
-		95C41D4B29FEBFFB009E0E31 /* DetailRecipesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C41D4A29FEBFFB009E0E31 /* DetailRecipesViewController.xib */; };
-		95C41D4F29FEC00C009E0E31 /* DetailRecipesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C41D4D29FEC00C009E0E31 /* DetailRecipesProtocol.swift */; };
-		95C41D5029FEC00C009E0E31 /* DetailRecipesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C41D4E29FEC00C009E0E31 /* DetailRecipesViewModel.swift */; };
+		95C41D3929FEBF62009E0E31 /* ListProducts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95C41D3829FEBF62009E0E31 /* ListProducts.storyboard */; };
+		95C41D3C29FEBF6C009E0E31 /* ProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C41D3A29FEBF6C009E0E31 /* ProductCollectionViewCell.xib */; };
+		95C41D3D29FEBF6C009E0E31 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C41D3B29FEBF6C009E0E31 /* ProductCollectionViewCell.swift */; };
+		95C41D3F29FEBF80009E0E31 /* ListProdcutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C41D3E29FEBF80009E0E31 /* ListProdcutsViewController.swift */; };
+		95C41D4829FEBFE1009E0E31 /* DetailProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C41D4729FEBFE1009E0E31 /* DetailProductsViewController.swift */; };
+		95C41D4B29FEBFFB009E0E31 /* DetailProductsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C41D4A29FEBFFB009E0E31 /* DetailProductsViewController.xib */; };
+		95C41D4F29FEC00C009E0E31 /* DetailProductsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C41D4D29FEC00C009E0E31 /* DetailProductsProtocol.swift */; };
+		95C41D5029FEC00C009E0E31 /* DetailPeoductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C41D4E29FEC00C009E0E31 /* DetailPeoductsViewModel.swift */; };
 		95C41D5429FED60A009E0E31 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95C41D5329FED60A009E0E31 /* GoogleService-Info.plist */; };
 		95C41D5629FED9A5009E0E31 /* ProductOfList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C41D5529FED9A5009E0E31 /* ProductOfList.swift */; };
 /* End PBXBuildFile section */
@@ -100,14 +100,14 @@
 		95C41D2C29FEBD55009E0E31 /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		95C41D3429FEBF59009E0E31 /* ListRecipesProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRecipesProtocols.swift; sourceTree = "<group>"; };
 		95C41D3529FEBF59009E0E31 /* ListProductsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListProductsViewModel.swift; sourceTree = "<group>"; };
-		95C41D3829FEBF62009E0E31 /* ListRecipes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ListRecipes.storyboard; sourceTree = "<group>"; };
-		95C41D3A29FEBF6C009E0E31 /* RecipeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipeCollectionViewCell.xib; sourceTree = "<group>"; };
-		95C41D3B29FEBF6C009E0E31 /* RecipeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCollectionViewCell.swift; sourceTree = "<group>"; };
-		95C41D3E29FEBF80009E0E31 /* ListRecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRecipesViewController.swift; sourceTree = "<group>"; };
-		95C41D4729FEBFE1009E0E31 /* DetailRecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRecipesViewController.swift; sourceTree = "<group>"; };
-		95C41D4A29FEBFFB009E0E31 /* DetailRecipesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailRecipesViewController.xib; sourceTree = "<group>"; };
-		95C41D4D29FEC00C009E0E31 /* DetailRecipesProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRecipesProtocol.swift; sourceTree = "<group>"; };
-		95C41D4E29FEC00C009E0E31 /* DetailRecipesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRecipesViewModel.swift; sourceTree = "<group>"; };
+		95C41D3829FEBF62009E0E31 /* ListProducts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ListProducts.storyboard; sourceTree = "<group>"; };
+		95C41D3A29FEBF6C009E0E31 /* ProductCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCollectionViewCell.xib; sourceTree = "<group>"; };
+		95C41D3B29FEBF6C009E0E31 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
+		95C41D3E29FEBF80009E0E31 /* ListProdcutsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListProdcutsViewController.swift; sourceTree = "<group>"; };
+		95C41D4729FEBFE1009E0E31 /* DetailProductsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailProductsViewController.swift; sourceTree = "<group>"; };
+		95C41D4A29FEBFFB009E0E31 /* DetailProductsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailProductsViewController.xib; sourceTree = "<group>"; };
+		95C41D4D29FEC00C009E0E31 /* DetailProductsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailProductsProtocol.swift; sourceTree = "<group>"; };
+		95C41D4E29FEC00C009E0E31 /* DetailPeoductsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPeoductsViewModel.swift; sourceTree = "<group>"; };
 		95C41D5329FED60A009E0E31 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		95C41D5529FED9A5009E0E31 /* ProductOfList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOfList.swift; sourceTree = "<group>"; };
 		BB19FD6CD0BF0261AF80956B /* Pods-TestSpira.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestSpira.release.xcconfig"; path = "Target Support Files/Pods-TestSpira/Pods-TestSpira.release.xcconfig"; sourceTree = "<group>"; };
@@ -374,7 +374,7 @@
 		95C41D3029FEBF32009E0E31 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				95C41D3E29FEBF80009E0E31 /* ListRecipesViewController.swift */,
+				95C41D3E29FEBF80009E0E31 /* ListProdcutsViewController.swift */,
 				95C41D3129FEBF3D009E0E31 /* Cells */,
 			);
 			path = Controller;
@@ -383,8 +383,8 @@
 		95C41D3129FEBF3D009E0E31 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				95C41D3B29FEBF6C009E0E31 /* RecipeCollectionViewCell.swift */,
-				95C41D3A29FEBF6C009E0E31 /* RecipeCollectionViewCell.xib */,
+				95C41D3B29FEBF6C009E0E31 /* ProductCollectionViewCell.swift */,
+				95C41D3A29FEBF6C009E0E31 /* ProductCollectionViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -392,7 +392,7 @@
 		95C41D3229FEBF49009E0E31 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				95C41D3829FEBF62009E0E31 /* ListRecipes.storyboard */,
+				95C41D3829FEBF62009E0E31 /* ListProducts.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -419,7 +419,7 @@
 		95C41D4129FEBFCC009E0E31 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				95C41D4729FEBFE1009E0E31 /* DetailRecipesViewController.swift */,
+				95C41D4729FEBFE1009E0E31 /* DetailProductsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -427,7 +427,7 @@
 		95C41D4929FEBFF3009E0E31 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				95C41D4A29FEBFFB009E0E31 /* DetailRecipesViewController.xib */,
+				95C41D4A29FEBFFB009E0E31 /* DetailProductsViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -435,8 +435,8 @@
 		95C41D4C29FEC004009E0E31 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				95C41D4D29FEC00C009E0E31 /* DetailRecipesProtocol.swift */,
-				95C41D4E29FEC00C009E0E31 /* DetailRecipesViewModel.swift */,
+				95C41D4D29FEC00C009E0E31 /* DetailProductsProtocol.swift */,
+				95C41D4E29FEC00C009E0E31 /* DetailPeoductsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -514,9 +514,9 @@
 				95C41CCD29FEB7C1009E0E31 /* Main.storyboard in Resources */,
 				95C41D5429FED60A009E0E31 /* GoogleService-Info.plist in Resources */,
 				95C41D1F29FEBCAC009E0E31 /* DateSelectedView.xib in Resources */,
-				95C41D4B29FEBFFB009E0E31 /* DetailRecipesViewController.xib in Resources */,
-				95C41D3929FEBF62009E0E31 /* ListRecipes.storyboard in Resources */,
-				95C41D3C29FEBF6C009E0E31 /* RecipeCollectionViewCell.xib in Resources */,
+				95C41D4B29FEBFFB009E0E31 /* DetailProductsViewController.xib in Resources */,
+				95C41D3929FEBF62009E0E31 /* ListProducts.storyboard in Resources */,
+				95C41D3C29FEBF6C009E0E31 /* ProductCollectionViewCell.xib in Resources */,
 				95C41D2329FEBCB7009E0E31 /* SearchBarView.xib in Resources */,
 				95C41D1B29FEBCA5009E0E31 /* ButtonSelectView.xib in Resources */,
 				95C41D1629FEBC95009E0E31 /* MapViewController.xib in Resources */,
@@ -590,23 +590,23 @@
 				95C41D5629FED9A5009E0E31 /* ProductOfList.swift in Sources */,
 				95C41D1C29FEBCA5009E0E31 /* ButtonSelectView.swift in Sources */,
 				95C41CC829FEB7C1009E0E31 /* SceneDelegate.swift in Sources */,
-				95C41D4F29FEC00C009E0E31 /* DetailRecipesProtocol.swift in Sources */,
+				95C41D4F29FEC00C009E0E31 /* DetailProductsProtocol.swift in Sources */,
 				95C41CE429FEB9DB009E0E31 /* AlertsNative.swift in Sources */,
 				95C41D2D29FEBD55009E0E31 /* AuthViewModelProtocols.swift in Sources */,
 				95C41CF229FEB9F8009E0E31 /* RouteURL.swift in Sources */,
 				95C41D2429FEBCB7009E0E31 /* SearchBarView.swift in Sources */,
-				95C41D4829FEBFE1009E0E31 /* DetailRecipesViewController.swift in Sources */,
+				95C41D4829FEBFE1009E0E31 /* DetailProductsViewController.swift in Sources */,
 				95C41CFB29FEBADF009E0E31 /* TextModel.swift in Sources */,
-				95C41D3D29FEBF6C009E0E31 /* RecipeCollectionViewCell.swift in Sources */,
+				95C41D3D29FEBF6C009E0E31 /* ProductCollectionViewCell.swift in Sources */,
 				95C41D0C29FEBB59009E0E31 /* UserRepository.swift in Sources */,
 				95C41D3729FEBF59009E0E31 /* ListProductsViewModel.swift in Sources */,
 				95C41D2E29FEBD55009E0E31 /* AuthViewModel.swift in Sources */,
 				95C41D0629FEBB51009E0E31 /* UserDefault.swift in Sources */,
 				95C41CFA29FEBADF009E0E31 /* UserModel.swift in Sources */,
 				95C41CE929FEB9E5009E0E31 /* CustomTextField.swift in Sources */,
-				95C41D5029FEC00C009E0E31 /* DetailRecipesViewModel.swift in Sources */,
+				95C41D5029FEC00C009E0E31 /* DetailPeoductsViewModel.swift in Sources */,
 				95C41D0D29FEBB59009E0E31 /* ProductsWS.swift in Sources */,
-				95C41D3F29FEBF80009E0E31 /* ListRecipesViewController.swift in Sources */,
+				95C41D3F29FEBF80009E0E31 /* ListProdcutsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -759,12 +759,11 @@
 				DEVELOPMENT_TEAM = 8KV7J43P59;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TestSpira/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "${app_name}";
+				INFOPLIST_KEY_CFBundleDisplayName = "Test Spira";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -789,12 +788,11 @@
 				DEVELOPMENT_TEAM = 8KV7J43P59;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TestSpira/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "${app_name}";
+				INFOPLIST_KEY_CFBundleDisplayName = "Test Spira";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -880,12 +878,11 @@
 				DEVELOPMENT_TEAM = 8KV7J43P59;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TestSpira/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "${app_name}";
+				INFOPLIST_KEY_CFBundleDisplayName = "Test Spira";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -1,5 +1,5 @@
 //
-//  ListRecipesViewModel.swift
+//  ListProductsViewModel.swift
 //  test_empowermentlabs
 //
 //  Created by iMac on 9/02/23.
@@ -15,12 +15,24 @@ class ListProductsViewModel {
 }
 //MARK: -ListProductsViewModelToView
 extension ListProductsViewModel: ListProductsViewModelToView {
-    func getListProducts(controller: UIViewController, numberPerPage: Int) {
+    func getListProducts(controller: UIViewController, text: String, numberPerPage: Int) {
         
         Products.getListProducts(numberOfItems: numberPerPage) { [weak self] success, listProducts, error in
             if success {
-                guard let self = self, let listRecipes = listProducts else {return}
-                self.listProductsViewToViewModel?.succesGetListProducts(listProducts: listRecipes)
+                guard let self = self, let listProducts = listProducts else {return}
+                if text.isEmpty {
+                    self.listProductsViewToViewModel?.succesGetListProducts(listProducts: listProducts, text: text)
+                    return
+                }
+                var listProductFilter = [ProductOfList]()
+                listProductFilter = listProducts.filter({ productOfList in
+                    print("\(productOfList.title ?? "") text: \(text) cumple: \((productOfList.title ?? "").contains(text.lowercased()))")
+                    return (productOfList.title?.lowercased() ?? "").contains(text.lowercased())
+                })
+                
+                self.listProductsViewToViewModel?.succesGetListProducts(listProducts: listProductFilter, text: text)
+                return
+                
             } else {
                 controller.view.makeToast(error)
             }
@@ -29,7 +41,7 @@ extension ListProductsViewModel: ListProductsViewModelToView {
     
     func getLocationData() {
         
-        LocationsWS.getLocationRecipe() {[weak self] successs, locationData, error in
+        LocationsWS.getLocationProduct() {[weak self] successs, locationData, error in
             guard let self = self else {return}
             if let locationData = locationData {
                 self.listProductsViewToViewModel?.successGetListText(locationModel: locationData)
@@ -64,28 +76,17 @@ extension ListProductsViewModel: ListProductsViewModelToView {
         }
     }
     
-    func getListFavoriteREcipesIds() -> [ProductOfList] {
-        return FavoriteDefault.getFavoriteRecipe()
+    func getListFavoriteProductsIds() -> [ProductOfList] {
+        return FavoriteDefault.getFavoriteProduct()
     }
     
     func addAndRemoveFavoriteId(result: ProductOfList) {
-        FavoriteDefault.addFavoriteRecipe(result: result)
+        FavoriteDefault.addFavoriteProduct(result: result)
     }
     
     func getListPage(listProducts: [ProductOfList]) -> [String] {
-        var listText = [String]()
-        let listData:Int = (listProducts.count ?? 0) / 10
-
-        var index1 = 0
-        for _ in 0...listData {
-            
-            index1 += 10
-            listText.append("\(index1 - 9)...\(index1)")
-        }
-        if ((listProducts.count ?? 0) % 10) > 0 {
-            listText.append("\(index1 - 9)...\((listProducts.count ?? 0))")
-        }
         
-        return listText
+        
+        return ["0...5", "0...10", "0...15", "all"]
     }
 }
